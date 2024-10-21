@@ -50,7 +50,7 @@ const addBookHandler = (request, h) => {
 const getAllBooksHandler = () => {
     const booksList = books.map((book) => ({
         id: book.id,
-        name: book.name,
+        name: book.name,  // Pastikan name ikut ditampilkan
         publisher: book.publisher,
     }));
 
