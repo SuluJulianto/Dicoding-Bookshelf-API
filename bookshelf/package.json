@@ -1,18 +1,18 @@
 {
-  "name": "bookshelf-api",
+  "name": "submission",
   "version": "1.0.0",
-  "description": "Bookshelf API project for submission",
+  "description": "Bookshelf API Project",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "start-dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "hapi": "^20.0.0",
-    "nanoid": "^3.1.30"
+    "@hapi/hapi": "^21.2.0",
+    "nanoid": "^3.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.22"
   },
   "author": "Sulu Edward Julianto",
   "license": "ISC"
