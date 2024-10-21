@@ -1,5 +1,5 @@
 const { nanoid } = require('nanoid');
-const books = [];
+let books = [];
 
 const addBookHandler = (request, h) => {
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
@@ -21,7 +21,7 @@ const addBookHandler = (request, h) => {
   const id = nanoid(16);
   const insertedAt = new Date().toISOString();
   const updatedAt = insertedAt;
-  const finished = (pageCount === readPage);
+  const finished = pageCount === readPage;
 
   const newBook = {
     id, name, year, author, summary, publisher, pageCount, readPage, finished, reading, insertedAt, updatedAt,
@@ -58,25 +58,14 @@ const getBookByIdHandler = (request, h) => {
 
   return {
     status: 'success',
-    data: {
-      book,
-    },
+    data: { book },
   };
 };
 
 const updateBookHandler = (request, h) => {
   const { bookId } = request.params;
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
-
-  const index = books.findIndex((b) => b.id === bookId);
-
-  if (index === -1) {
-    return h.response({
-      status: 'fail',
-      message: 'Gagal memperbarui buku. Id tidak ditemukan',
-    }).code(404);
-  }
-
+  
   if (!name) {
     return h.response({
       status: 'fail',
@@ -91,20 +80,30 @@ const updateBookHandler = (request, h) => {
     }).code(400);
   }
 
+  const index = books.findIndex((b) => b.id === bookId);
+
+  if (index === -1) {
+    return h.response({
+      status: 'fail',
+      message: 'Gagal memperbarui buku. Id tidak ditemukan',
+    }).code(404);
+  }
+
   const updatedAt = new Date().toISOString();
   books[index] = {
     ...books[index],
     name, year, author, summary, publisher, pageCount, readPage, reading, updatedAt,
   };
 
-  return {
+  return h.response({
     status: 'success',
     message: 'Buku berhasil diperbarui',
-  };
+  }).code(200);
 };
 
 const deleteBookHandler = (request, h) => {
   const { bookId } = request.params;
+
   const index = books.findIndex((b) => b.id === bookId);
 
   if (index === -1) {
@@ -116,16 +115,10 @@ const deleteBookHandler = (request, h) => {
 
   books.splice(index, 1);
 
-  return {
+  return h.response({
     status: 'success',
     message: 'Buku berhasil dihapus',
-  };
+  }).code(200);
 };
 
-module.exports = {
-  addBookHandler,
-  getAllBooksHandler,
-  getBookByIdHandler,
-  updateBookHandler,
-  deleteBookHandler,
-};
+module.exports = { addBookHandler, getAllBooksHandler, getBookByIdHandler, updateBookHandler, deleteBookHandler };
