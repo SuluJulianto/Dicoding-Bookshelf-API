@@ -1,15 +1,13 @@
 {
   "name": "bookshelf-api",
   "version": "1.0.0",
-  "description": "Simple Bookshelf API",
+  "description": "Bookshelf API Project",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "@hapi/hapi": "^20.2.0",
+    "@hapi/hapi": "^20.1.2",
     "nanoid": "^3.3.4"
-  },
-  "author": "Sulu Edward Julianto",
-  "license": "ISC"
+  }
 }
