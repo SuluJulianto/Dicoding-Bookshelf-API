@@ -1,20 +1,17 @@
 {
   "name": "bookshelf-api",
   "version": "1.0.0",
-  "description": "Bookshelf API project for managing book collections",
+  "description": "Bookshelf API to manage books",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "start-dev": "nodemon src/server.js"
   },
-  "keywords": [],
-  "author": "Sulu Edward Julianto",
-  "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^21.0.0",
-    "nanoid": "^3.3.4"
+    "hapi": "^20.1.2",
+    "nanoid": "^3.1.30"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.15"
   }
 }
